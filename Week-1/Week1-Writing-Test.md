@@ -627,3 +627,423 @@ Properti justify-content bisa diisi dengan satu dari beberapa nilai berikut:
 
 ![sapce-around](space-around.png)
 
+
+## Algoritma & Data Structures
+
+### Definisi
+
+- #### Algoritma
+Algoritma adalah deskripsi berupa langkah-langkah yang dibutuhkan untuk menyelesaikan suatu masalah.
+
+Pengertian lain menjelaskan bahwa algoritma adalah urutan langkah logis tertentu untuk memecahkan suatu masalah. 
+
+Manfaat dilakukannya algoritma adalah untuk memungkinkan seorang developer untuk berpikir kritis dalam menyelesaikan suatu masalah agar solusi yang didapat lebih efektif.
+
+
+- #### Data Structure
+Struktur Data adalah cara mengumpulkan dan mengatur data sedemikian rupa sehingga kita dapat melakukan operasi pada sebuah data dengan cara yang efektif. 
+
+Struktur Data adalah tentang merender elemen data dalam beberapa hubungan, untuk organisasi dan penyimpanan yang lebih baik.
+
+Struktur Data digunakan untuk mengelola/manajemen sebuah data.
+
+Struktur Data dapat meningkatkan kualitas algoritma.
+
+
+### Perbedaan
+Algoritma memberikan langkah-langkah yang dilakukan untuk menyelesaikan masalah, sedangkan struktur data mengatur data yang dibutuhkan dalam memori (mengorganisasi data). 
+
+### Seberapa Penting Algoritma ?
+Programming itu justru identik dengan memecahkan suatu permasalahan, maka dari itu algoritma merupakan pemeran utamanya.
+
+Bahasa pemrograman hanyalah pemeran pendamping. Belajar algoritma sama aja dengan mengingat kembali alur berfikir yg terstruktur.
+
+### Penulisan atau Penyajian Algoritma
+Algoritma dapat ditulis dalam 3 bentuk, yaitu:
+
+> 1. Deskriptif, penulisan algoritma dengan cara deskriptif seperti kita menulis tutorial (tata cara) dengan bahasa sehari-hari.
+>
+> 2. Flow Chart atau diagram alir, penyajian algoritmanya lebih mudah dibaca karena memiliki tampilan visual. Flow chart menggunakan simbol bangun datar sebagai representasi dari proses yg dilakukan.
+>
+> 3. Pseudo Code, penulisan algoritmanya hampir menyerupai penulisan pada kode pemrograman.
+
+> Note : Pseudo Code bukanlah sebuah bahasa pemrograman.
+
+### Contoh Algoritma Sederhana
+Algoritma Menampilkan deret angka 1 sampai 10
+```
+Deskriptif
+1. siapkan i bernilai 1
+2. Apakah i <= 10?
+3. Jika ya, ke no 5
+4. Jika tidak, ke no 8
+5. tampilkan i
+6. lalu i jumlahkan dengan 1
+7. dan kembali ke no 2
+8. proses selesai
+```
+
+![flowchart-sederhana](flowChart.png)
+
+```
+Pseudo Code
+Menampilkan deret angka 1 - 10
+deklarasi
+          i ← 1
+deskripsi
+          while i <= 10
+                        print i
+                        i = i + 1
+          end
+```
+
+### Penerapan Algoritma dengan Javascript
+Kita ambil contoh kasus algoritma sebelumnya, yaitu Menampilkan deret angka 1- 10. Berikut penerapan dan hasilnya:
+
+![algoritma-js](algoritma-js.png)
+
+> Note : Disini saya menggunakan looping for untuk penerapannya.
+
+
+## Javascript Intro
+
+### Definisi
+Javascript adalah bahasa pemrograman yang ringan, dinamis, dan dapat dikoordinasikan untuk oriented programming maupun functional programming. 
+
+Javascript biasanya digunakan untuk melakukan perubahan pada tampilan website, misalnya saat mengklik tombol, menentukan desain dan layout, memberikan efek yang unik atau animasi yang lucu dan menarik. 
+
+Fungsi JavaScript, sebagai element yang membuat website menjadi interaktif.
+
+### Cara Menyisipkan Javascript
+Ada dua cara, yaitu:
+
+1. **Internal JavaScript**, yaitu menyisipkan kode JavaScript langsung di dalam file HTML.
+2. **External JavaScript**, yaitu membuat file JavaScript sendiri dan menyambungkannya dengan file HTML.
+
+- #### Internal Javascript
+Untuk menyisipkan kode JavaScript di dalam file HTML, kita bisa menuliskan kode JavaScript di dalam tag `<script>`. Tag `<script>` sendiri bisa ditulis di dalam `<head>` maupun di dalam bagian akhir dari `<body>`.
+
+Contoh:
+```
+<!-- <script> tag di dalam <head> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Website Pertamaku</title>
+    <script>
+      console.log("Halo Semua!"); // output : Halo Semua!
+    </script>
+  </head>
+  <body>
+    <h2>JavaScript di dalam head</h2>
+  </body>
+</html>
+```
+```
+<!-- <script> tag di dalam <body> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Website Pertamaku</title>
+  </head>
+  <body>
+    <h2>JavaScript di dalam body</h2>
+
+    <script>
+      console.log("Halo Semua!"); // output : Halo Semua!
+    </script>
+  </body>
+</html>
+```
+
+- #### Eksternal Javascript
+Cara menyambungkannya sama seperti internal JavaScript, yaitu menggunakan tag `<script>` di dalam element `<body>`, hanya saja, kita menambahkan attribute src di dalam `<script>` untuk menyambungkan dengan file eksternal JavaScript kita.
+
+Contoh:
+```
+<!-- File index.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Website Pertamaku</title>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h2>Hello, World!</h2>
+  </body>
+</html>
+```
+```
+// File script.js
+
+console.log("Halo Semua!"); // output : Halo Semua!
+```
+
+### Mendeklarasikan Variabel
+Cara mendeklarasikan sebuah variabel adalah dengan kata kunci var, let atau const dan diikuti dengan nama variabelnya, seperti ini:
+
+- var namaVariabel1 = "hallo";
+
+- let namaVariabel2 = "hello";
+
+- const namaVariabel3 = "world";
+
+> Note : untuk penulisan dengan var sudah jarang digunakan dan tidak disarankan
+
+Dalam menamakan variabel, perlu mengikuti beberapa ketentuan sebagai berikut:
+1. Menggunakan konvensicamelCase, yaitu menggunakan huruf kecil pada permulaan kata, dan jika nama variabel terdiri dari 2 kata atau lebih, maka kata kedua dan berikutnya diawali dengan huruf besar.
+2. Nama variabel boleh diawali dengan underscore(_), huruf besar (jika diharuskan), dan $.
+3. Nama variabel tidak diawali dengan angka, @, *, #, !, %, (), -, +.
+4. Tidak boleh menggunakan kata kunci JavaScript seperti boolean, break, else, extends, dan lain-lain.
+5. Antara kata pertama dan kata kedua tidak diberi spasi atau dash(-);
+6. Karena JavaScript bersifat case-sensitive, maka penamaan juga case-sensitive (jadi variabel hitung dengan variabel Hitung itu berbeda).
+
+### Tipe Data Javascript
+Berikut beberapa tipe data dalam Javascript
+
+- String, deretan karakter yang diapit oleh sepasang tanda kutip.
+```
+ let nama = "Deva"
+```
+> Note : bisa menggunakan tanda (' '), (" "), (``)
+
+- Number, bilangan bulat, pecahan, dan lain-lain.
+``` 
+let number = 13
+```
+> Note: Dalam tipe data number ini dibagi lagi :
+> - integer (seperti 1, 2, dan 3)
+> - atau float (seperti 3.14, 2.718, dan 1.618)
+
+- Boolean, nilai benar dari sebuah pernyataan yang dituliskan sebagai true atau false.
+```
+let x = true
+let y = false
+```
+
+- Null, sebuah nilai yang berarti kosong atau menunjuk pada nilai yang tidak ada.
+```
+let z = null
+```
+
+- Undifined, berbeda dari null, undefined menandakan kondisi variabel yang belum diberi sebuah nilai. Jadi pernyataan "nilai variabel itu adalah undefined" sebenarnya kurang tepat, sebab variabelnya memang tidak mempunyai sebuah nilai.
+```
+let z
+console.log(z);
+```
+> Note : Kode diaatas akan menampilkan undefined karena variabel belum diberi sebuah nilai.
+
+- Object, sebuah kumpulan pasangan properti dan nilai
+```
+let mahasiswa = {
+  nama: "Deva"
+  nim: 1234567
+}
+```
+
+- Array, adalah tipe variabel yang dapat menampung berbagai jenis data dengan tipe yang bermacam-macam, dengan jumlah yang tidak terbatas.
+```
+let buah = ['mangga', 'pisang', 'durian']
+```
+
+### Operator Javascript
+Terdapat beberapa jenis operator dalam Javascript, yaitu:
+
+- #### Operator Aritmatika
+Operator aritmatika digunakan di operasi matematika yang melibatkan data dengan tipe number.
+
+Operator-operator tersebut dapat dilihat pada tabel berikut ini:
+```
++	=   Penjumlahan
+-	=   Pengurangan
+*	=   Perkalian
+/	=   Pembagian
+**	=   Eksponen (pangkat)
+%	=   Modulus (menghasilkan sisa hasil pembagian)
+++	=   Increment (menambah 1)
+--	=   Decrement (mengurangi 1)
+```
+
+Contoh penggunaan :
+```
+let a = 5
+let b = 10
+let hasil = a * b
+
+console.log(hasil); // output 50
+```
+![operator aritmatika](aritmatika-operator.png)
+
+- #### Operator Assignment
+Assignment operator digunakan untuk memberikan nilai pada variabel.
+```
+Assignment    Operator    Contoh Penggunaan   Setara Dengan
+=	            	            x=y	            x=y
+=	            +	            x += y	        x = x + y
+=	            -	            x -= y	        x = x - y
+=	            *	            x *= y	        x = x * y
+=	            /	            x /= y	        x = x / y
+=	            %	            x %= y	        x = x % y
+=	            **	            x **= y	        x = x ** y
+```
+
+- #### Operator Perbandingan
+Operator perbandingan digunakan untuk membandingkan dua data atau nilai.
+```
+Operator	            Deskripsi
+==	            sama dengan (cek nilai)
+===	            sama dengan (cek nilai dan tipe data)
+!=	            tidak sama dengan (cek nilai)
+!==	            tidak sama dengan (cek nilai dan tipe data)
+>	            lebih dari
+<	            kurang dari
+>=	            lebih dari atau sama dengan
+<=	            kurang dari atau sama dengan
+? :	            ternary operator
+```
+
+Contoh penggunaan :
+```
+let bilangan = 10;
+
+console.log(bilangan == 10); // Output: true
+console.log(bilangan == 8); // Output: false
+console.log(bilangan == "10"); // Output: true
+```
+![operator-perbandingan](perbandingan-operator.png)
+
+- #### Operator Logika
+Operator logika digunakan untuk menentukan logika antara dua kondisi atau nilai.
+```
+Operator        Deskripsi
+&&	            AND (Dan)
+||	            OR (Atau)
+!	            NOT (Bukan)
+```
+Tabel perbandingan:
+```
+Operator	  Kondisi 1	      Kondisi 2	        Hasil
+&&	            true	        true	        true
+&&	            true	        false	        false
+&&	            false	        true	        false
+&&	            false	        alse	        false
+||	            true	        true	        true
+||	            true	        false	        true
+||	            false	        true	        true
+||	            false	        false	        false
+!	            true	        -	            false
+!	            false	        -	            true
+```
+
+### Javasxript Control Flow
+- #### Conditional
+  - Conditional merupakan statement percabangan yang menggambarkan suatu kondisi.
+  - Conditional statement akan mengecek kondisi spesifik dan menjalankan perintah berdasarkan kondisi tersebut
+  - Perintah akan dijalankan jika hanya kondisi bernilai true.
+
+- #### Looping
+  - Looping adalah control flow yang mengulang sebuah instruksi/perintah hingga kondisinya terpenuhi atau jika kondisi stop/berhenti tercapai.
+  - Looping biasanya digunakan untuk mempersingkat penulisan kode sehingga menghemat waktu.
+
+Berdasarkan penjelasan diatas cukup terlihat perbedaan antara conditional dan looping. Berikut ini terdapat beberapa conditional dan looping yang ada pada Javascript
+
+### Conditional
+- #### if
+Digunakan apabila hanya ada 1 kondisi dan 1 keputusan yang dijalankan.
+```
+if (kondisi1) {
+  // masukkan kode yang akan dijalankan di sini apabila kondisi1 tercapai
+}
+```
+
+- #### if ... else
+Digunakan apabila ada 1 kondisi dan 2 keputusan yang dijalankan.
+```
+if (kondisi1) {
+  // masukkan kode yang akan dijalankan di sini apabila kondisi1 tercapai
+} else {
+  // masukkan kode yang akan dijalankan di sini apabila kondisi1 TIDAK tercapai
+}
+```
+
+- #### if ... else if ...
+Digunakan apabila ada beberapa kondisi dan beberapa keputusan yang dijalankan.  
+```
+if (kondisi1) {
+  // masukkan kode yang akan dijalankan di sini apabila kondisi1 tercapai
+} else if (kondisi2) {
+  // masukkan kode yang akan dijalankan di sini apabila kondisi1 tidak tercapai dan kondisi2 tercapai
+} else if (kondisi3) {
+  // masukkan kode yang akan dijalankan di sini apabila kondisi1 dan kondisi2 tidak tercapai, dan kondisi3 tercapai
+} else {
+  // masukkan kode yang akan dijalankan di sini apabila semua kondisi di atas TIDAK tercapai
+}
+```
+
+- #### switch case
+Jika kita memiliki banyak pilihan kondisi, menggunakan perintah if, else if dan else akan kurang efisien karena kode yang ditulis akan menjadi sangat panjang sekali.
+
+Alternatifnya adalah menggunakan switch dan case
+```
+switch (pernyataan) {
+  case kondisi1:
+    // keputusan yang dijalankan ketika kondisi1 tercapai
+    break;
+  case kondisi2:
+    // keputusan yang dijalankan ketika kondisi2 tercapai
+    break;
+  case kondisi3:
+    // keputusan yang dijalankan ketika kondisi3 tercapai
+    break;
+  ...
+  default:
+    // keputusan yang dijalankan ketika semua kondisi tidak tercapai
+}
+```
+- 
+  -  switch digunakan untuk mendeklarasikan pernyataan yang menjadi patokan kondisi.
+  - case digunakan untuk menulis masing-masing kondisi dari hasil pernyataan yang akan diperiksa.
+  - break digunakan untuk menghentikan program berjalan ketika sudah menemukan kondisi yang tercapai.
+  - default adalah keputusan yang akan dijalankan apabila hasil pernyataan di switch tidak ada yang sesuai dengan masing-masing kondisi di case (tidak ada kondisi yang tercapai).
+
+![contoh-conditional](contoh-conditional.png)
+
+### Loopping
+
+- #### for loop
+For loop merupakan instruksi pengulangan yang dapat kita berikan pada program yang kita kembangkan.
+
+Gunakan for loop jika kita tahu seberapa banyak nilai pasti untuk pengulangannya
+
+```
+for (initialization; condition; post-expression) {
+  // statement
+}
+```
+> - Inisialisasi: Sebagai inisialisasi awal dari mana mulainya sebuah pengulangan. Kita memberikan nilai awal/default pada parameter ini.
+> - Condition: For loop akan terus berjalan selama kondisi ini terpenuhi. Selama kondisi bernilai TRUE.
+> - Post-expression (Increment/Decrement): Iterasi statement yang digunakan untuk mengupdate variabel yang menjadi kontrol pada pengulangan.
+
+- #### while loop
+While loop akan menjalankan instruksi pengulangan kondisi bernilai TRUE.
+
+Gunakan while loop jika kita tidak mengetahui jumlah pasti pengulangan.
+
+```
+while (expression) {
+  // statement
+}
+```
+
+- #### do while loop
+Do while akan melakukan pengulangan sebelum dilakukan pengecekan kondisi.
+```
+do {
+  statement(s);
+} while(expressions);
+```
+
+![contoh-looping](contoh-looping.png)
