@@ -255,8 +255,7 @@ Multidimensional Array bisa dianalogikan dengan array of array, yaitu terdapat a
 
 Sama seperti array satu dimensi, multidimensional array juga dapat menggunakan Property dan Method built-in Array. Cara memanggilnya menggunakan baris dan kolom.
 
-Contoh dan cara memanggil :
-
+Contoh dan hasil :
 ```h
 let arrMulti = [
     ["nama", "alpha"],
@@ -268,14 +267,454 @@ console.log(arrMulti[0][1]);
 console.log(arrMulti[2][1]);
 ```
 
-Hasil :
-
 ![array-multidimensional](img/array-multidimensional.png)
 
-Contoh looping dalam array multidimensional :
+Contoh dan hasil looping dalam array multidimensional :
 
 ![multidimensional-loop](img/multidimensional-loop.png)
 
-Hasil :
-
 ![multidimensional-loop-result](img/multidimensional-loop-result.png)
+
+
+
+## Javascript Object
+
+
+### Definisi
+
+Dalam kehidupan nyata, kita sebenarnya sudah sering menjumpai object. Entah itu benda mati atau benda hidup. Semuanya adalah object. 
+
+Object didunia nyata dapat kita modelkan didalam programming. Jadi pada programming, object adalah sebuah tipe data pada variabel yang menyimpan properti dan fungsi (method).
+
+Properti adalah data lengkap dari sebuah object. Method adalah action dari sebuah object. Apa saja yang dapat dilakukan dari suatu object.
+
+Tipe data yang sudah kita pelajari:
+
+- number
+- string
+- boolean
+- null
+- undefined
+- array
+- object
+
+Contoh object jika diilustrasikan :
+
+![contoh-object](img/contoh-object.png)
+
+
+### Membuat/Mendeklarasikan Sebuah Object
+
+Sama seperti tipe data sebelumnya. Object dapat diassign kedalam sebuah variabel. Dan sama seperti array, didalam object kita dapat menyimpan properti dengan tipe data apapun.
+
+- Menggunakan Object Literal
+    
+    Syntax :
+    ```h
+    let nama_obj = {
+        key1: "value",
+        key2: "value2",
+    }
+    ```
+
+    Contoh dan hasil :
+    ```h
+    let siswa = {
+        nama: "Deva",
+        umur: 21,
+        hobi: "jogging",
+        "nomor handphone": 0812345 
+    }
+
+    console.log(siswa);
+    ```
+
+    ![membuat-object](img/membuat-object.png)
+
+- Menggunakan Kata Kunci `new`
+
+    Syntax :
+    ```h
+    let namaObjek = new Object();
+
+    namaObjek.namaProperti1 = nilai1;
+    namaObjek.namaProperti2 = nilai2;
+    ```
+
+    Contoh :
+    ```h
+    let orang = new Object();
+
+    orang.nama = 'sarah';
+    orang.umur = 24;
+    orang.pekerjaan = 'programmer'; 
+    ```
+
+
+### Mengakses Object dan Property Object
+
+Jika kita ingin menggunakan nilai yang terdapat di dalam properti suatu objek, maka kita harus mengakses properti objek tersebut.
+
+Ada 2 cara untuk mengaksesnya :
+
+1. Dot Notation
+
+    Syntax :
+    ```h
+    let objek = {
+    namaProperti: nilaiProperti
+    };
+
+    // Dot Notation
+    objek.namaProperti // Output: nilaiProperti
+    ```
+
+    Contoh dan hasil :
+    ```h
+    let siswa = {
+        nama: "Deva",
+        umur: 21,
+        hobi: "jogging",
+        "nomor handphone": 0812345 
+    }
+
+    console.log(siswa) // Menampilkan isi keseluruhan object
+    console.log(siswa.nama); // Menampilkan salah satu property dari object
+    console.log(siswa.umur); // Menampilkan salah satu property dari object
+    console.log(siswa.hobi); // Menampilkan salah satu property dari object
+    ```
+
+    ![dot-notation](img/dot-notation.png)
+
+2. Bracket Notation
+
+    Syntax :
+    ```h
+    let objek = {
+        namaProperti: nilaiProperti
+    };
+
+    // Bracket Notation
+    objek["namaProperti"] // Output: nilaiProperti
+
+    // bisa juga menggunakan single quote
+    objek['namaProperti'] // Output: nilaiProperti
+    ```
+
+    Contoh dan hasil :
+    ```h
+    let siswa1 = {
+        nama: "Alpha",
+        umur: 22,
+        hobi: "futsal",
+        "nomor handphone": 0812345 
+    }
+
+    console.log(siswa1); // Menampilkan isi keseluruhan object
+    console.log(siswa1["nama"]); // Menampilkan salah satu property dari object
+    console.log(siswa1["hobi"]); // Menampilkan salah satu property dari object
+    console.log(siswa1["nomor handphone"]); // Menampilkan salah satu property dari object
+    ```
+
+    ![bracket-notation](img/bracket-notation.png)
+
+3. Tambahan, Menggunakan Variabel
+
+    Contoh dan hasil :
+    ```h
+    let siswa1 = {
+        nama: "Alpha",
+        umur: 22,
+        hobi: "futsal",
+        "nomor handphone": 0812345 
+    }
+
+    console.log(siswa);
+    let property = "hobi"
+    console.log(siswa1[property]);
+    ```
+
+    ![variabel-notation](img/variabel-notation.png)
+
+
+### Update Object
+
+Kita dapat melakukan update pada variabel dengan tipe data Object. Object dapat mengupdate value dari key yang sudah tersedia. Object dapat menambahkan key dan value baru.
+
+- Menambah Property Baru
+    
+    Contoh dan hasil :
+    ```h
+    let buku = {
+        judul: "My Life My Strugel",
+        penulis: "Dave",
+        "jumlah halaman": 500
+    }
+    console.log(buku);
+
+    // Menggunakan dot notation
+    buku.tahun = 2022
+    buku.penerbit = "Media Kita"
+    console.log(buku);
+    
+    // Menggunakan bracket notation
+    buku["harga"] = "Rp.92.800"
+    console.log(buku);
+    ```
+
+    ![tambah-property](img/tambah-property.png)
+
+- Mengganti Value Property
+
+  - Menggunakan Dot Notation
+     
+    Contoh dan hasil :
+    ```h
+    let hewan = {
+        nama: "kucing",
+        kaki: 4,
+        warna: "putih"
+    }
+    console.log(hewan);
+
+    hewan.nama = "kelinci"
+    hewan.warna = "coklat"
+    console.log(hewan);
+    ```
+
+    ![ganti-value-dot](img/ganti-value-dot.png)
+
+  - Menggunakan Bracket Notation
+
+    Contoh dan hasil :
+    ```h
+    let hewan = {
+        nama: "kucing",
+        kaki: 4,
+        warna: "putih"
+    }
+    console.log(hewan);  
+
+    hewan["nama"] = "ayam"
+    hewan["kaki"] = 2
+    console.log(hewan); 
+    ```
+    
+    ![ganti-value-bracket](img/ganti-value-bracket.png)
+
+  - Mengganti Value Dalam Const
+
+    Kita bisa mengganti/mengubah value object const selama tidak mengubah keseluruhan object tersebut.
+
+    Contoh dan hasil :
+    ```h
+    const bunga = {
+        nama: "Mawar"
+    }
+    bunga.nama = "Melati"
+    console.log(bunga);
+    ```
+
+    ![ganti-value-const](img/ganti-value-const.png)
+
+    Syntax yang tidak bisa dilakukan dalam variabel const :
+    ```h
+    const bunga = {
+        nama: "Mawar"
+    }
+
+    bunga = { nama: "Lily"}
+    bunga = "Tulip"
+    ```
+
+    ![ganti-const-error](img/ganti-const-error.png)
+
+
+  > Jadi jika membutuhkan untuk update seluruh data object gunakan ‘let’ pada saat deklarasi variabel.
+
+
+### Delete Object Property
+
+Kita dapat menghapus properti dari object menggunakan delete operator.
+
+Contoh dan hasil :
+```h
+let hewan = {
+    nama: "kucing",
+    kaki: 4,
+    warna: "putih"
+    suara: "Miaaaww"
+}
+console.log(hewan);
+
+delete hewan.kaki
+delete hewan.warna
+console.log(hewan);
+```
+
+![delete-property](img/delete-property.png)
+
+
+### Method
+
+Jika value yang kita masukkan pada property berupa function. Maka itu disebut method.
+
+Contoh dan hasil :
+```h
+const greeting = {
+    welcome: function() {
+        return "Halo, selamat datang"
+    },
+    afterPay: function() {
+        return "Terimakasih sudah membeli produk kami!"
+    }
+}
+console.log(greeting.welcome());
+console.log(greeting.afterPay());
+```
+
+![method-inObject](img/method-inObject.png)
+
+- Build-in Method Object 
+  
+  Contoh dan hasil :
+  ```h
+  let siswa = {
+    nama: "Deva",
+    umur: 21,
+    hobi: "jogging"
+  }
+  console.log(siswa);
+
+  // Merubah object menjadi array
+  console.log(Object.keys(siswa));
+
+  // Memanggil dari value
+  console.log(Object.values(siswa));
+  ```
+
+  ![buildIn-method](img/buildIn-method.png)
+
+
+### Nested Object
+
+Pada real application nanti kalian pasti menemukan data object yang kompleks. Object yang berasal dari turunan object lainnya.
+
+Contoh dan hasil :
+```h
+let buku = {
+    judul: "Cek Toko Sebelah",
+    tahun: 2022,
+    penulis: {
+        penulis1: {
+            nama: "Deva",
+            umur: 21,
+            kota: "bandung"
+        },
+        penulis2: {
+            nama: "Devi",
+            umur: 21,
+            kota: "jakarta"
+        }
+    }
+}
+console.log(buku);
+
+// Memanggil property
+console.log(buku.penulis.penulis1.nama);
+console.log(buku.penulis.penulis1.kota);
+console.log(buku.penulis.penulis2.nama);
+console.log(buku.penulis.penulis2.kota);
+```
+
+![nested-object](img/nested-object.png)
+
+
+### Looping Object
+
+Jika kita ingin menampilkan seluruh object properti. Kita bisa menggunakan looping dan tidak perlu mengakses secara manual memanggil setiap propertinya.
+
+Looping yang digunakan adalah `for..in`.
+```h
+let siswa = {
+    nama: "Reyhan",
+    umur: 22,
+    kota: "jakarta"
+}
+console.log(siswa);
+
+for(let key in siswa) {
+    console.log(siswa[key]); 
+}
+```
+
+![object-loop](/Week-3/img/object-loop.png)
+
+Contoh case lain menggunakan nested loop :
+```h
+let buku = {
+    judul: "Cek Toko Sebelah",
+    tahun: 2022,
+    penulis: {
+        penulis1: {
+            nama: "Deva",
+            umur: 21,
+            kota: "bandung"
+        },
+        penulis2: {
+            nama: "Devi",
+            umur: 21,
+            kota: "jakarta"
+        }
+    }
+}
+console.log(buku);
+
+for(let key in buku.penulis.penulis1){
+    console.log(buku.penulis.penulis1[key], "(ini dari nested)");
+}
+```
+
+![nested-loop](img/nested-loop.png)
+
+
+### Array of Object
+
+Apakah object hanya menyimpan 1 data? Tidak. Object sama seperti Array yang bisa menyimpan banyak data. Kita dapat menggunakan `array of object` untuk data yang lebih dari satu.
+
+Contoh dan hasil :
+```h
+let users = [
+    {
+        nama: "deva",
+        umur: 21,
+        alamat: "bandung"
+    },
+    {
+        nama: "aditya",
+        umur: 21,
+        alamat: "jakarta"
+    },
+    {
+        nama: "octavian",
+        umur: 21,
+        alamat: "jogja"
+    }
+]
+console.log(users);
+
+// cara memanggil / mengaksesnya
+let data = users.map((el) => {
+    console.log(el.nama);
+    
+// Menambahkan property baru kedalam array tersebut
+    el.status = "aktif"
+    return el
+})
+console.log(data);
+
+// jika ingin mengambil salah satu data
+console.log(users[0].nama);
+```
+
+![array-ofObject](img/array-ofObject.png)
