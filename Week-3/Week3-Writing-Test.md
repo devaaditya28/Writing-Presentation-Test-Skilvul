@@ -875,17 +875,13 @@ Module pada file JavaScript membutuhkan penghubung antar satu file dengan file y
 
 ## Javascript Recursive
 
-### Definisi
+### Definisi dan Ciri
 
 _Recursive/rekursif_ adalah suatu teknik pemrograman yang menggunakan `function` atau `fungsi`. Sederhananya adalah `fungsi` yang memanggil `fungsi` tersebut atau dirinya sendiri, seolah-olah terjadi suatu perulangan. Proses pemanggilan inilah yang disebut sebagai _recursion (rekursi)_ dan akan terus dilakukan sampai pada kondisi yang sudah ditentukan.
 
-Syntax :
-```h
-function rekursif() {
-  // kode lainnya
-  rekursif();
-}
-```
+Ciri dari _recursive/rekursif_ :
+- Fungsi _rekursif_ selalu memiliki kondisi yang menyatakan kapan fungsi tersebut berhenti. Kondisi ini harus dapat dibuktikan akan tercapai, karena jika tidak tercapai maka kita tidak dapat membuktikan bahwa fungsi akan berhenti, yang berarti algoritma kita tidak benar.
+- Fungsi _rekursif_ selalu memanggil dirinya sendiri sambil mengurangi atau memecahkan data masukan setiap panggilannya. Hal ini penting diingat, karena tujuan utama dari _rekursif_ ialah memecahkan masalah dengan mengurangi masalah tersebut menjadi masalah-masalah kecil.
 
 ### Penggunaan Recursive/Rekursif
 
