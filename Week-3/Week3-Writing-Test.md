@@ -718,3 +718,250 @@ console.log(users[0].nama);
 ```
 
 ![array-ofObject](img/array-ofObject.png)
+
+
+## Javascript Modules
+
+
+### Definisi
+
+Modules adalah **reusable code**  yang dapat di **export** dari suatu file javascript dan di **import** ke file javascript yang lain. **Resusable code** disini adalah data yang dapat digunakan berulang kali. 
+
+Atau pengertian lainnnya adalah cara untuk memisahkan code ke file yang berbeda. 
+
+Kita bisa melakukan **export** data apapun seperti `string`, `number`, `array`, `object`, `class`, hingga `function/method`.
+
+
+### Mengapa menggunakan module?
+
+1. Maintainability
+   - Module yang dirancang dengan baik bisa mengurangi ketergantungan pada bagian tertentu pada kode kita. Merubah satu module lebih mudah ketika module dipisahkan dari potongan kode lainnya daripada merubah dalam satu file yang terdiri dari ratusan ribu kode.
+
+   - Mempermudah jika kita ingin menambahkan, menghapus, dan merubah kode kita karena tidak mempengaruhi keseluruhan aplikasi kita.
+
+2. Penggunaan Nama Variabel
+   - Module memudahkan kita untuk memberikan alias nama variabel yang di-import. Sehingga kita tidak mengalami kesulitan untuk mengganti nama variabel jika nama variabel yang kita import sama dengan nama variabel dalam file yang menggunakan module tersebut.
+
+3. Reusable Code 
+   - Kita sangat sering menggunakan kode yang sama baik itu variabel atau function dari satu file ke file yang lain. Padahal jika kita ingin menjadi programmer yang baik, kita harus menggunakan prinsip DRY (Don't Repeat Yourself) pada kode kita. Untuk itu sebaiknya jika kita akan membuat kode yang nantinya akan dapat digunakan pada file yang lain, maka kita perlu membuat sebagai module.
+
+### Membuat Modules
+
+Menggunakan syntax dari versi JavaScript ES6 seperti pada kelas JavaScript Dasar. Cukup menambahkan `attribute type` pada tag `script` kemudian isi nilainya dengan `module`. Sehingga menjadi seperti ini :
+```h
+<script type="module" src="index.js"></script>
+```
+
+Saat menjalankan module, kita `tidak bisa` menggunakan url local komputer kita di browser. Harus menggunakan `static-server`. Kita bisa menggunakan extensions `Live Server` pada `Visual Studio Code`.
+
+Contoh :
+```h
+// File HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Modules & Rekursif</title>
+</head>
+<body>
+    <h1>Javascript - Modules & Recursive</h1>
+
+   
+    <script src="./indonesia.js" type="module"></script>
+</body>
+</html>
+```
+
+Hasil :
+![membuatModul-server](img/membuatModul-server.png)
+
+Hasil menggunakan url local :
+![membuatModul-local](img/membuatModul-local.png)
+
+
+### Export & Import
+
+Module pada file JavaScript membutuhkan penghubung antar satu file dengan file yang lain. Untuk bisa menghubungkan file antar JavaScript kita bisa menggunakan export dan import sehingga memungkinkan untuk saling menggunakan kode antar module.
+
+- #### Export
+
+    _Export_ digunakan untuk meng-_export_ variabel pada file JavaScript. Variabel yang di _export_ dapat berisi data seperti _string, object, array_, hingga _function_. Hal ini dilakukan agar file JavaScript tersebut dapat dijadikan sebuah module, sehingga variabel yang telah di-_export_ dapat digunakan pada file JavaScript lain dengan menggunakan _import_.
+
+    Penggunaan _export_ diawali dengan kata kunci `export` kemudian diikuti oleh nama variabel yang ingin di-_export_ atau bisa digunakan di akhir kode kita, dengan nama variabel yang ingin di _export_.
+
+    Kita tidak bisa langsung meng-_export_ data tanpa disimpan ke dalam variabel terlebih dahulu.
+
+    Contoh :
+    ```h
+    // export string
+    export let name = "Deva"
+
+    // export array
+    export let motor = [
+        "suzuki",
+        "yamaha", 
+        "honda", 
+        "kawasaki"
+        ]
+
+    // export function
+    export function sayHello() {
+        console.log("hallooo");
+    }
+    ```
+
+    ```h
+    let name = "Deva"
+    let motor = ["suzuki", "yamaha", "honda", "kawasaki"]
+    let smartPhone = ["sony", "samsung", "xiaomi", "LG"]
+
+    function sayHello() {
+        console.log("hallooo");
+    }
+
+    // Mengexport sekaligus 
+    export { name, motor, samrtPhone, sayHello }
+    ```
+
+- #### Import
+  
+    _Import_ diibaratkan sebagai pasangan dari _export_. Jadi _import_ digunakan untuk menggunakan variabel yang sudah di-_export_ dari module lainnya.
+
+    Contoh :
+    ```h
+    import { name, motor, smartPhone, sayHello } from "./jepang.js"
+    ```
+
+    Hasil _export_-_import_ :
+
+    ![export-import](img/export-import.png)
+
+- #### Export Import As
+  
+    Saat melakukan _export_ & _import_, kita bisa memberikan alias pada nama `variabel`, `function` dan data lainnya menggunakan keyword `"as"`.
+    ```h
+    // export
+    export { smartPhone as smartPhoneJepang }
+
+    // import
+    import { motor as motorJepang } from "./jepang.js"
+    ```
+
+- #### Export default
+
+   Dengan menggunakan `export default`, kode yang kita _export_ akan bersifat lebih spesial pada module tersebut. Karena spesial, berarti dalam satu module hanya boleh terdapat satu `export default`.
+
+    Biasanya `export default` digunakan untuk membuat salah satu variabel menjadi data utama yang akan di-_export_ pada sebuah module. `export default` juga bisa digunakan jika hanya ada satu variabel pada suatu module.
+
+    Penggunaannya sama seperti _export_ biasa, kamu cukup menambahkan kata kunci `default` setelah `export`.
+    ```h
+    // export default
+    let entertainment = ["anime", "manga", "idol", "dorama"]
+    export default entertainment
+
+    // import dari export default tidak menggunakan curly braces
+    // dan namanya bisa diubah
+    import japan from "./jepang.js"
+    console.log(japan);
+    ```
+
+    ![export-default](img/export-default.png)
+
+
+## Javascript Recursive
+
+### Definisi
+
+_Recursive/rekursif_ adalah suatu teknik pemrograman yang menggunakan `function` atau `fungsi`. Sederhananya adalah `fungsi` yang memanggil `fungsi` tersebut atau dirinya sendiri, seolah-olah terjadi suatu perulangan. Proses pemanggilan inilah yang disebut sebagai _recursion (rekursi)_ dan akan terus dilakukan sampai pada kondisi yang sudah ditentukan.
+
+Syntax :
+```h
+function rekursif() {
+  // kode lainnya
+  rekursif();
+}
+```
+
+### Penggunaan Recursive/Rekursif
+
+_Rekursif_ sangat cocok untuk menyelesaikan permasalahan pada matematika, fisika, kimia, dan yang berhubungan dengan operasi perhitungan lainnya.
+
+Dengan menggunakan _rekursif_, memungkinkan kamu untuk dapat merancang suatu logika penyelesaian menjadi lebih baik dan mudah dibaca. Namun dari kelebihannya itu, _rekursif_ menggunakan banyak memori sehingga membuat aplikasi menjadi lambat jika data yang diuji sangat banyak.
+
+Ada 3 hal yang perlu diperhatikan untuk memutuskan kapan menggunakan _rekursif_ dan kapan menggunakan _iteratif_:
+
+1. Jika fokus kamu adalah kecepatan pada aplikasi dan menghemat memori, kamu harus menggunakan _iteratif_.
+2. Jika data yang diuji tidak banyak, kamu dapat menggunakan _rekursif_.
+3. Beberapa algoritma secara natural lebih cocok menggunakan _rekursif_.
+
+Fokus dari teknik ini adalah memudahkan kamu memecahkan suatu permasalahan besar menjadi bagian-bagian kecil.
+
+### Membuat Recursive/Rekursif
+
+_Rekursif_ adalah pemanggilan fungsi yang berulang. Function yang menerapkan cara _rekursif_ disebut juga dengan recursive function. Jika _recursive function_ tersebut memanggil dirinya sendiri, akan terjadi _infinity recursion_ (rekursi tak hingga). Maka dari itu ada beberapa hal yang harus diperhatikan dalam membuat _recursive function_.
+
+Algoritma _rekursif_ mempunyai 2 komponen utama, yaitu:
+
+1. *Base Case* (titik paling kecil/berhenti)
+    
+    Kasus dasar untuk menyelesaikan permasalahan. Base case akan dikunjungi jika rekursi berakhir (kondisi untuk berhenti terpenuhi), serta mengembalikan nilai tanpa melakukan rekursi kembali.
+
+2. *Recursion Call* (titik dia memanggil diri dia sendiri)
+
+    Permasalahan yang ada tentunya akan diperkecil dengan melakukan pemanggilan function itu sendiri (recursion call). Permasalahan dapat diperkecil dengan mengurangi atau memecahkan data input pada setiap pemanggilannya hingga mencapai base case.
+
+Syntax :
+```h
+function namaFuncRekursif() {
+  if (condition) {
+    // Base case
+  } else {
+    // Recursion call
+    namaFuncRekursif();
+  }
+}
+```
+
+Contoh Kasus :
+```h
+// Case Deret Angka
+function deretAngka(n) {
+    if (n == 1) {           // basecase
+        console.log(n);
+    } else {                // recursive case
+        deretAngka(n-1)
+        console.log(n);
+    }
+}
+deretAngka(10)
+```
+![rekursif-deret](img/rekursif-deret.png)
+
+Contoh kasus lain beserta perbandingan menggunakan looping for :
+```h
+// Case Bilangan Faktorial
+
+// Menggunakan recursive
+function faktorial(n) {
+    if (n == 1) {   // basecase
+        return 1
+    } else {
+        return n * faktorial(n-1)   // recursive case
+    }
+}
+console.log(faktorial(5));
+
+// Menggunakan For
+function faktorialFor(n) {
+    let hasil = 1
+    for (let i = n; i >= 1; i--) {
+        hasil = hasil * i
+        // console.log(i);
+    }
+    return hasil
+}
+console.log(faktorialFor(5));
+```
+![rekursif-faktorial](img/rekursif-faktorial.png)
