@@ -964,3 +964,195 @@ function faktorialFor(n) {
 console.log(faktorialFor(5));
 ```
 ![rekursif-faktorial](img/rekursif-faktorial.png)
+
+
+## Javascript Asynchronous 
+
+Bahasa pemrograman JavaScript termasuk ke dalam _single-thread language_ atau _synchronous_ yang artinya hanya dapat mengeksekusi satu perintah pada satu waktu dan harus menunggu satu perintah tersebut selesai sebelum melanjutkan perintah selanjutnya.
+
+Untuk bisa mengeksekusi urutan perintah dari kode yang kita tulis ada 2 istilah yang digunakan pada JavaScript yaitu _synchronous_ dan _asynchronous_.
+
+### Syncrhonous
+
+_Synchronous_ adalah saat kita mengeksekusi perintah satu persatu dan berurutan. Analoginya seperti kita sedang mengantri di kasir atau loket. Ketika ada 1 perintah masuk maka dia akan dieksekusi terlebih dahulu. Jika perintah belum selesai dan sudah ada perintah baru maka perintah kedua (yang baru) akan mengantri sampai perintah 1 selesai. Proses seperti ini disebut _**blocking**_ dan membuat perintah kita tereksekusi dengan lambat.
+
+Contoh :
+```h
+console.log("antrian 1");
+console.log("antrian 2");
+console.log("antrian 3");
+
+// output
+// antrian 1
+// antrian 2
+// antrian 3
+```
+
+Kode di atas bersifat _synchronous_ yaitu kode dijalankan baris per baris. Maka output kode di atas tereksekusi sesuai urutan perintahnya.
+
+Salah satu konsep lain di pemrograman adalah kebalikan dari synchronous yaitu _asynchronous_.
+
+### Asyncrhonous
+
+_Asynchronous_ yang biasa dikenal juga dengan sebutan _**non-blocking**_ mengizinkan komputer kita untuk memproses perintah lain sambil menunggu suatu proses lain yang sedang berlangsung. Ini artinya kita bisa melakukan lebih dari 1 proses sekaligus (_multi-thread_). Eksekusi perintah dengan _asynchronous_ tidak akan melakukan _**blocking**_ atau menunggu perintah sebelumnya selesai. Jadi sambil menunggu kita bisa mengeksekusi perintah lain.
+
+Dalam proses _asynchronous_ terdapat 3 kunci utama :
+1. _Callback_
+2. _Promise_
+3. _async-await_
+
+### Menjalankan Asynchronous pada JavaScript
+
+Jika JavaScript secara default bersifat _synchronous_, maka bagaimana jika ingin menerapkan proses _asynchronous_ ? Ada beberapa cara untuk membuat proses _asynchronous_. Contohnya seperti 2 cara ini :
+
+1. `setTimeout(function, milliseconds)` digunakan untuk simulasi pemanggilan kembali proses asynchronous yang sedang/sudah selesai dijalankan. Pemanggilan hanya dilakukan 1 kali.
+2. `setInterval(function, milliseconds)` digunakan untuk simulasi pemanggilan proses asynchronous yang sedang/sudah dijalankan dalam interval waktu tertentu. Pemanggilan dilakukan berkali-kali sesuai interval waktu yang ditentukan.
+
+Contoh :
+```h
+function proses1() {
+  console.log("proses 1 selesai dijalankan");
+}
+
+function proses2() {
+  // setTimeout or delay for *asynchronous* simulation
+  setTimeout(function () {
+    console.log("proses 2 selesai dijalankan");
+  }, 100);
+}
+
+function proses3() {
+  console.log("proses 3 selesai dijalankan");
+}
+
+proses1();
+proses2();
+proses3();
+
+/*
+Hasil Output
+proses1 selesai dijalankan
+proses3 selesai dijalankan
+proses2 selesai dijalankan
+*/
+```
+
+Bisa kita bisa lihat bahwa `proses3()` selesai terlebih dahulu dibanding `proses2()`. Hal ini terjadi dikarenakan `proses2()` melakukan `setTimeout()` yang merupakan proses _asynchronous_ sehingga `proses3()` selesai terlebih dibanding `proses2()`.
+
+### Callback
+
+_Callback_ adalah sebuah _function_, namun bedanya dengan _function_ pada umumnya adalah pada cara eksekusinya. Jika _function_ pada umumnya dieksekusi secara langsung, sedangkan _callback_ dieksekusi di dalam _function_ lain melalui parameter.
+
+Kita akan coba memperbaiki proses _asynchronous_ sebelumnya dengan memastikan output proses1, proses2, dan proses3 sesuai urutan dengan menggunakan _callback_.
+
+Contoh penggunaan _callback_ :
+```h
+function proses1() {
+  console.log("proses 1 selesai dijalankan");
+}
+
+function proses2(callback) {
+  setTimeout(function () {
+    console.log("proses 2 selesai dijalankan");
+    callback();
+  }, 100);
+}
+
+function proses3() {
+  console.log("proses 3 selesai dijalankan");
+}
+proses1();
+proses2(proses3);
+
+/*
+Hasil Output
+proses1 selesai dijalankan
+proses2 selesai dijalankan
+proses3 selesai dijalankan
+*/
+```
+
+### Promise
+
+_**Promise**_ sesuai dengan artinya adalah janji. Seperti ketika kita berjanji, jika apa yang kita janjikan bisa kita lakukan maka kita harus melakukannya, jika janjinya ada halangan maka kita tidak bisa melakukannya atau jika janji tersebut belum pada waktunya kita juga harus menunggunya.
+
+Konsep _promise_ hadir untuk memecahkan masalah yang bertele-tele dengan _callback_, semakin banyak kita menggunakan _callback_ untuk proses _asynchronous_ semakin kompleks dan sulit kode kita untuk dibaca dan dipelihara. Kita juga akan sering menghadapi _callback_ di dalam _callback_ dan seterusnya. Masalah seperti ini disebut dengan _Callback Hell_.
+
+Dalam _promise_ kita akan mengenal beberapa status dalam _promise_ :
+
+- _**Pending / tertunda**_ = Jika kita belum melewati batas waktu dilaksanakan dan belum mengetahui janji tersebut bisa ditepati atau tidak. Atau jika data sedang diproses.
+- _**Fulfilled / terpenuhi**_ = Jika janji berhasil dipenuhi sebelum batas waktu yang ditentukan. Atau jika data telah berhasil didapatkan.
+- _**Rejected / gagal**_ = Jika janji gagal ditepati karena suatu hal dan kita melakukan rencana lain. Atau jika data gagal didapatkan.
+- _**Settled / terselesaikan**_ = Jika semua janji sudah selesai terpenuhi kita sudah bebas melakukan hal lainnya.
+
+    ![status-promise](img/status-promise.png)
+
+Kita bisa membuat sendiri apa yang akan dilakukan pada sebuah _promise_. Di dalam _promise_ ada 2 keyword yaitu `resolve()` dan `reject()`.
+
+- `resolve()`, jika proses berhasil atau fullfilled.
+- `reject()`, jika proses gagal atau rejected.
+
+Contoh menggunakan _promise_ :
+```h
+let newPromise = new Promise((resolve, reject) => {
+  if (true) {
+    // apa yang dilakukan jika promise fulfilled
+    resolve("Berhasil");
+  } else {
+    // apa yang dilakukan jika promise rejected
+    reject("Gagal");
+  }
+});
+```
+```h
+// pembuatan promise.............
+let nontonPromise = new Promise((resolve, reject) => {
+  if (true) {
+    resolve("nonton terpenuhi") // berhasil
+  } 
+
+  reject("gagal"); // gagal
+});
+
+// eksekusi proses..............
+console.log("A");
+
+nontonPromise
+  .then((result) => {
+    console.log(result);
+    return `${result} bareng doi`
+  })
+  .then((result) => {
+    console.log(result)
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+console.log("C");
+```
+![js-promise](img/js-promise.png)
+
+Contoh _pomise_ dari function :
+```h
+let nonton = (kondisi) => {
+  return new Promise((resolve, reject) => {
+    if (kondisi == "jalan") {
+      resolve("nonton terpenuhi")
+    }
+    reject("batal nonton")
+  })
+}
+
+nonton("jalan")
+.then(result => {
+  console.log(result)
+})
+.catch(err => {
+  console.log(err);
+})
+```
+![promise-function](img/promise-function.png)
+
+> - `.then()` digunakan untuk mengantisipasi keadaan fulfilled.
+> - `.catch()` digunakan untuk mengantisipasi keadaan rejected.
