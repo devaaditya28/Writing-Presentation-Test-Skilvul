@@ -1143,7 +1143,6 @@ let nonton = (kondisi) => {
     reject("batal nonton")
   })
 }
-
 nonton("jalan")
 .then(result => {
   console.log(result)
@@ -1156,3 +1155,67 @@ nonton("jalan")
 
 > - `.then()` digunakan untuk mengantisipasi keadaan fulfilled.
 > - `.catch()` digunakan untuk mengantisipasi keadaan rejected.
+
+
+## Web Storage
+
+Ada beberapa cara untuk menyimpan data pengguna seperti pencarian, artikel berita, dan lain-lain ke lokal (browser) menggunakan web storage seperti _cookies_, _local storage_, dan _session storage_. Data ini dimanfaatkan oleh situs web tersebut untuk merekam kebiasaan pengguna agar dapat memberikan rekomendasi sesuai preferensi si pengguna tersebut.
+
+### _Cookies_
+
+_Cookies_ adalah data kecil yang dikirim dari situs web dan disimpan di komputer kita oleh _web browser_ saat kita menjelajah. Disebut data kecil karena maksimum data yang dapat disimpan dalam _cookies_ adalah 4096 bytes (4 KB).
+
+Biasanya data yang disimpan di _cookies_ adalah _access token_ pengguna saat login atau data pencarian saat melakukan pencarian pada situs web tertentu. Hal ini yang biasanya dilakukan oleh situs pencarian untuk melacak pencarian kita dan menampilkan iklan yang berhubungan dengan pencarian kita sebelumnnya.
+
+Namun ada beberapa kekurangan yang perlu kita perhatikan mengenai _cookies_ di antaranya:
+
+- Setiap kita mengakses situs web, cookies juga kembali dikirim sehingga memperlambat aplikasi web kamu dengan mengirimkan data yang sama.
+- _Cookies_ disertakan pada setiap _HTTP request_, sehingga mengirimkan data yang tidak dienkripsi melalui internet, maka saat kita ingin menyimpan data dalam _cookies_ kita harus mengenkripsinya terlebih dahulu.
+- _Cookies_ hanya dapat menyimpan data sebanyak 4KB.
+- Lalu _cookies_ juga memiliki tanggal kadaluarsa. Tanggal ini telah ditentukan sehingga _web browser_ bisa menghapus _cookies_ jika tanggal sudah kadaluarsa atau tidak dibutuhkan.
+
+Kita dapat memanfaatkan jenis _web storage_ yang lain untuk mengatasi kekurangan yang dimiliki _cookies_.
+
+Dengan memanfaatkan _local storage_ dan _session storage_, kita dapat menyimpan data lebih besar yaitu 5MB per page tanpa mempengaruhi kinerja situs web. Namun, penting untuk diketahui agar kita tidak menyimpan data sensitif seperti _password_ ke dalam _local storage_ ataupun _session storage_ untuk menghindari serangan pencurian data.
+
+### _Local Storage_
+
+Pada saat melakukan pencarian pada sebuah situs lalu situs tersebut menampilkan riwayat pencarian kita? Iya, data pencarian tersebut disimpan ke dalam local storage untuk diolah menjadi riwayat pencarian. Itulah salah satu contoh penerapan dari local storage pada aplikasi web.
+
+Local storage memiliki karakteristik sebagai berikut:
+
+1. Menyimpan data tanpa tanggal kadaluarsa.
+2. Data tidak akan dihapus ketika web browser ditutup dan akan tersedia seterusnya selama kita tidak menghapus data _local storage_ pada _web browser_.
+3. Dapat menyimpan data hingga 5MB.
+4. Hanya dapat menyimpan data _string_.
+
+### _Session Storage_
+
+Berbeda dengan _local storage_, walaupun masuk ke dalam _web storage_, data yang tersimpan pada _session storage_ **akan hilang** ketika _session_ dari sebuah laman berakhir.
+
+_Session storage_ mempunyai beberapa karakteristik, yaitu:
+
+1. Data yang disimpan pada _session storage_ akan terus tersimpan selama _browser_ terbuka dan tidak hilang jika laman di-_reload_.
+2. Membuka banyak _tab/window_ dengan URL yang sama, akan menciptakan _session storage_ yang berbeda di masing-masing _tab/window_.
+3. Menutup _tab/window_ akan mengakhiri _session_ dan menghapus data yang tersimpan di _session storage_ pada _tab/window_ tersebut.
+4. Data yang tersimpan dalam _session storage_ harus berbentuk _string_.
+5. Hanya dapat menyimpan data sebanyak 5MB.
+
+> Untuk menyimpan data pada _local storage_, kita menggunakan _method_ `setItem()` yang membutuhkan 2 parameter. Parameter pertama adalah _key_ yang ingin kita simpan dan parameter kedua adalah data (_value_) dari _key_ yang akan disimpan.
+```h
+localStorage.setItem('key', value);
+```
+
+> Untuk mengambil data yang telah tersimpan pada _local storage_, kita dapat menggunakan _method_ `getItem()` yang membutuhkan 1 parameter. Parameter tersebut adalah _key_ dari data yang kita inginkan.
+```h
+localStorage.getItem('key');
+```
+
+> Untuk menghapus data yang telah tersimpan pada _local storage_, kita dapat menggunakan _method_ `removeItem()` yang membutuhkan 1 parameter. Parameter tersebut adalah _key_ dari data yang ingin kita hapus.
+```h
+// menghapus key tertentu
+localStorage.removeItem("key");
+
+// menghapus semua key
+localStorage.clear();
+```
