@@ -1155,7 +1155,7 @@ nonton("jalan")
 
 > - `.then()` digunakan untuk mengantisipasi keadaan fulfilled.
 > - `.catch()` digunakan untuk mengantisipasi keadaan rejected.
-
+> - `.finally()` adalah fungsi callback yang pasti tereksekusi dalam kondisi apapun (fullfield ataupun rejected).
 
 ## Web Storage
 
