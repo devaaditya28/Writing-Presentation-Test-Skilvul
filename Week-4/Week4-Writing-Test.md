@@ -248,3 +248,176 @@ Selanjutnya akan muncul notif bahwa berhasil melakukan _resolve_ dan bisa melanj
 Terakhir, `pull request & merge` pun berhasil dilakukan
 
 ![PR-conflict7](img/PR-conflict7.png)
+
+## Responsive Web Design
+
+### Definisi
+
+Responsive Web Design (RWD) bertujuan membuat desain _website_ kita dapat diakses dalam device apapun. Device yang umum digunakan adalah **laptop/PC, smartphone dan tablet**. 
+
+### Setting up Chrome Dev Tools
+
+Setiap _developer web_ wajib menggunakan _tools_ bawaan dari setiap browser yang memudahkan proses _development website_. Pada _browser chrome_ biasa disebut dengan **Chrome Dev Tools**.
+
+Cara mengaksesnya bisa dengan shortcut pada _windows_ `Ctrl` + `Shift` + `J` atau klik kanan dan pilih _inspect_. Lalu pilih _icon phone & tablet_.
+
+![RWD](img/RWD.png)
+
+### Viewport
+
+Secara umum viewport adalah daerah pada layar yang menampilkan suatu konten. Dalam konteks kita kali ini, tentu viewport adalah daerah yang menampilkan halaman web yang sedang kita akses.
+
+Perlu kalian ingat bahwa ukuran viewport tidak selalu sama dengan resolusi layar perangkat.
+
+Coba kalian cermati tangkapan layar berikut.
+
+![viewport](img/viewport.svg)
+
+Gambar di kiri merupakan tangkapan layar pada komputer; gambar di kanan pada smartphone.
+
+Kotak berwarna hijau mewakili keseluruhan layar perangkat. Namun area yang kita sebut viewport tadi itu digambarkan oleh kotak berwarna biru.
+
+Kembali ke permasalahan di awal: Bagaimana kita membuat halaman web kita menjadi responsif? Bagaimana kita memastikan halaman web yang kita buat nanti itu tidak terlihat buruk atau terlalu besar pada perangkat mobile?
+
+Untuk membuat halaman website menjadi responsif, maka kita perlu menambahkan meta data berikut ini di dalam element `<head>` di file HTML.
+
+```h
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```
+
+Meta data di atas akan mengatur viewport dari halaman website, di mana meta data tersebut akan memberikan instruksi kepada browser untuk mengatur bagaimana dimensi dan skala dari halaman website kita.
+1. **width=device-width** memberitahu browser untuk mengikuti lebar layar dari perangkatnya. Sebab lebar layar tiap perangkat berbeda-beda.
+2. **initial-scale=1.0** memberitahu browser tingkat pembesaran (zoom level) dari halaman itu.
+
+### Relative Unit
+
+Relative unit berguna untuk mendesain website yang responsif karena ukurannya bisa berubah relatif terhadap parent atau ukuran layar.
+
+Secara umum relative unit bisa dipakai sebagai satuan bawaan website responsif sehingga bisa membantu untuk meng-update style di ukuran layar yang berbeda.
+
+Relative unit mungkin akan sedikit lebih sulit dibandingkan absolute unit untuk menentukan satuan mana yang akan dipakai. 
+
+Tidak ada standar resmi kapan waktu terbaik menggunakan satuan-satuann dari relative unit ini. Berikut beberapa contohnya.
+
+- **%** : Ukurannya relatif terhadap parent element.
+- **em** : Ukurannya relatif terhadap font-size dari elemen saat ini.
+- **rem** : Ukurannya relatif terhadap font-size root elemen `<html>`. `"rem" = "root em"`.
+- **ch** : Ukurannya mengikuti jumlah karakter (1 karakter sama dengan lebar dari karakter 0/nol font yang sedang aktif)
+- **vh** : Ukurannya relatif terhadap tinggi viewport (ukuran jendela tau aplikasi), 1vh = 1/100 dari tinggi viewport
+- **vw** : Ukurannya relatif terhadap lebar dari viewport. 1vw = 1/100 lebar viewport
+- **vmin** : Ukurannya relatif terhadap ukuran viewport yang lebih kecil (misalnya diorientasi portrait, lebar akan lebih kecil daripada tinggi). 1vmin = 1/100 dari ukuran viewport yang lebih kecil.
+- **vmax** : Sama dengan vmin, dia akan melihat ukuran viewport yang lebih besar
+- **ex** : Ukurannya relatif terhadap tinggi dari karakter "x" kecil font yang sedang aktif.
+
+### Media Query
+
+_Media query_ merupakan modul CSS3 yang berguna membuat layout kita responsive dengan menyesuaikan tampilan berdasarkan ukuran layar perangkat. 
+
+_Media query_ juga disebut dengan _Breakpoint_, karena cara kerja _media query_ yakni dengan cara mengecheck ukuran _viewport_(layar/area dimana konten terlihat) apakah sesuai dengan kondisi yang kita deklarasikan, jika benar maka kode dalam kondisi tersebut yang akan dieksekusi. Dengan kata lain _media query_ memberikan kemampuan menggunakan kode css yang sesuai dengan kondisi yang ditentukan.
+
+_Breakpoint_ sendiri merupakan perubahan yang terjadi pada tampilan saat berganti _device_ atau ukuran width. _Media query_ untuk _responsive web design_ umumnya hanya menggunakan 2 jenis _media query_, yaitu **min-width** dan **max-width**.
+
+![media-query-1](img/media-query-1.png)
+
+- #### Eksternal & Internal Media Query
+
+Ada 2 cara dalam menggunakan media query
+
+1. Dengan menggunakan tag `<link>` di dalam elemen `head`.
+
+    Contoh :
+
+    ```h
+    <head>
+    <link rel=”stylesheet” media=”screen and (min-width: 600px)” href=”laptop_styles.css”>
+    <link rel=”stylesheet” media=”screen and (min-width: 320px) and (max-width: 360)” href=”mobile_styles.css”>
+    </head>
+    ```
+
+2. Kita definisikan dengan rule `@media` di dalam internal css atau file css terpisah.
+
+    Contoh :
+
+    ```h
+    @media screen and (min-width: 240px) and (max-width: 480px) {
+    p {
+        font-size: 11px;
+    }
+    }
+    ```
+
+- #### Logika dalam CSS Media Query
+
+Secara basic cara kerja _media query_ menentukan, jika kondisi pernyataan benar (_true_) maka rules CSS kita akan diaplikasikan.
+
+> `And`, agar rules kita dapat dieksekusi maka pernyataan kita harus bernilai benar secara berturut-turut.
+
+Contoh :
+
+```h
+@media (min-width: 500px) and (max-width: 780px) {
+body {
+    font-size: 16px;
+    background-color: red;
+}
+}
+```
+
+> `Or`, dalam media query operator or dilambangkan dengan tanda baca `koma (,)`. Rules dengan logika `or` memiliki arti dapat dieksekusi jika salah satu diantara pernyataannya benar.
+
+Contoh :
+
+```h
+@media (min-width: 500px), (max-width: 780px) {
+body {
+    font-size: 16px;
+    background-color: red;
+}
+}
+```
+
+> `Only`, berfungsi untuk mencegah browser lama untuk menyentuh style untuk _Android_ atau _iPhone_. Rules CSS hanya dapat dieksekusi jika semua _query_ bernilai benar. Syarat menggunakan `only` adalah kita harus mengikut sertakan _media type_.
+
+Contoh :
+
+```h
+@media only screen and (min-width: 240px) and (max-width: 480px) {
+body {
+    font-size: 16px;
+    background-color: red;
+}
+}
+```
+
+- #### Media Type
+
+>`all`, Rules CSS kita cocok di semua jenis devices.
+
+>`print`, Style kita dimaksudkan untuk ditampilkan pada dokumen cetak atau _print preview_.
+
+>`screen`, Nilai _default media type_. Style kita dikhususkan untuk tampilan layar. 
+
+>`speech`, _Device_ yang memiliki kapabilitas `speech`.
+
+- #### Media Features
+
+Untuk menentukan kondisi kita bisa menyertakan _media features_ di bawah ini dengan nilai batas nantinya sebuah rules akan dieksekusi. _Media features_ harus berada dalam tanda kurung `()`. 
+```h
+width
+height
+min-width
+max-width
+device-width
+device-height
+aspect-ratio
+device-aspect-ratio
+color
+color-index
+monochrome
+resolution
+orientation
+scan
+grid
+```
+
+> Notes: Tidak ada aturan baku besaran _width_ dan berapa banyak _breakpoint_ yang harus dilakukan. _Responsive web design_ dilakukan sesuai dengan kebutuhan konten kita.
