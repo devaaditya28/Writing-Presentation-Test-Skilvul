@@ -439,7 +439,7 @@
   - Line 3 kita import counter dari file counter.js
   - Line 5 kita export secara default object yang sudah digabung menggunakan combineReducers.
 
-### Redux Thunk
+## Redux Thunk
 
 - Redux Thunk adalah middleware yang memungkinkan Anda memanggil pembuat aksi yang mengembalikan fungsi sebagai ganti objek aksi.
 - Fungsi itu menerima metode pengiriman penyimpanan, yang kemudian digunakan untuk mengirim aksi sinkron di dalam isi fungsi setelah operasi asinkron selesai.
